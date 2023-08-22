@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pierre-papier-ciseau</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), transparent), url(image.jpg) center center no-repeat;
+            background-size: cover;
+        }
+        
+        .choix{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .choix h4{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-transform: uppercase;
+            color: #999;
+        }
+        img{
+            width: 60px;
+            height: 60px;
+            margin: 20px 0;
+        }
+        button{
+            padding: 5px 30px;
+            margin-top: 20px;
+            border: 1px solid #5372f0;
+            background-color: #5372f0;
+            color: #fff;
+            border-radius: 6px;
+            transition: 0.5s;
+            text-transform: capitalize;
+        }
+        button:focus{
+            background: #fff;
+            color: #5372f0;
+        }
+        footer{
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .color {
+            color: rgb(75, 252, 5);
+        }
+    </style>
+</head>
+<body>
+    <section style="padding: 75px; color: azure;">
+        <h1>Bienvenue à ce divertissement, veillez cliquer sur un boutton de votre choix.</h1>
+    </section>
+    <section style="display: flex; flex-direction: column; align-items: center; width: 400px; background-color: #fff; padding: 26px; box-shadow: 0 0 10  rgba(0, 0, 0, O.2); border-radius: 6px;">
+        <div class="choix">
+            <h4>Vous<span id="choix-utilisateur"></span></h4>
+            <h4>ordinateur<span id="choix-ordinateur"></span></h4>
+        </div>
+        <h4><span id="resultat"></span></h4>
+        <div class="boutton_choix_jeu">
+            <button id="pierre">pierre</button>
+            <button id="papier">Papier</button>
+            <button id="ciseaux">Ciseaux</button>
+        </div>
+    </section>
+
+    <script>
+        const contenantChoixOrdinateur = document.getElementById('choix-ordinateur');
+        const contenantChoixUtilisateur = document.getElementById('choix-utilisateur');
+        const contenantChoixResultat = document.getElementById('resultat');
+
+        const choixPossibles = document.querySelectorAll('button');
+
+        let choixUtilisateur
+        let resultat
+        let choixOrdinateur
+
+        //Evenement 'Click sur les buttons'
+        choixPossibles.forEach(choixPossibles => choixPossibles.addEventListener ('click',(e) =>{
+            //recuperation de l'ID du boutton clique
+             choixUtilisateur = e.target.id ;
+             contenantChoixUtilisateur.innerHTML = `<img src="${choixUtilisateur}.png">`
+             generer_choix_ordinateur();
+             verification()
+        }))
+
+
+
+        function generer_choix_ordinateur(){
+            random = Math.floor(Math.random() * 3) +1
+            if(random === 1){
+                choixOrdinateur = "pierre"
+            }
+            if(random === 2){
+                choixOrdinateur = "papier"
+            }
+            if(random === 3){
+                choixOrdinateur = "ciseaux"
+            }
+            contenantChoixOrdinateur.innerHTML = `<img src="${choixOrdinateur}.png">`
+        }
+
+
+        function verification(){
+            if(choixUtilisateur == choixOrdinateur){
+                resultat = "Egalité !" ;
+            }
+            if(choixUtilisateur == "pierre" && choixOrdinateur == "papier"){
+                resultat = "Perdu !" ;
+            }
+            if(choixUtilisateur == "papier" && choixOrdinateur == "ciseaux"){
+                resultat = "Perdu !" ;
+            }
+            if(choixUtilisateur == "ciseaux" && choixOrdinateur == "pierre"){
+                resultat = "Perdu !" ;
+            }
+
+            if(choixUtilisateur == "pierre" && choixOrdinateur == "ciseaux"){
+                resultat = "Gagné !" ;
+            }
+            if(choixUtilisateur == "ciseaux" && choixOrdinateur == "papier"){
+                resultat = "Gagné !" ;
+            }
+            if(choixUtilisateur == "papier" && choixOrdinateur == "pierre"){
+                resultat = "Gagné !" ;
+            }
+            contenantChoixResultat.innerHTML = resultat ;
+        } 
+    </script>
+    <footer>
+        <p>&copy; 2023 Cyber café Gaby. Tous droits réservés. <span class="color">By August'inc.</span></p>
+    </footer>
+</body>
+</html>

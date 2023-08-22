@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Générateur de Mot de Passe</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          min-height: 100vh;
+          background: linear-gradient(rgba(173, 171, 171, 0.4), transparent), url(PAYSAGE.jpeg) center center no-repeat;
+          background-size: cover;
+        }
+  
+        .container {
+          background-color: white;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          text-align: center;
+        }
+  
+        h1 {
+          margin-top: 0;
+        }
+  
+        label, input, button, p {
+          margin-top: 10px;
+        }
+        footer{
+          background-color: #333;
+          color: white;
+          text-align: center;
+          padding: 10px;
+        }
+        .color {
+            color: rgb(75, 252, 5);
+        }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Générateur de Mot de Passe</h1>
+    <label for="length">Longueur du mot de passe :</label>
+    <input type="number" id="length" min="6" max="20">
+    <button id="generate">Générer</button>
+    <p id="password"></p>
+  </div>
+  <footer>
+    <p>&copy; 2023 Cyber café Gaby. Tous droits réservés. <span class="color">By August'inc.</span></p>
+</footer>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const generateButton = document.getElementById('generate');
+          const passwordDisplay = document.getElementById('password');
+   
+          generateButton.addEventListener('click', function() {
+            const lengthInput = document.getElementById('length');
+            const passwordLength = parseInt(lengthInput.value);
+     
+            if (passwordLength >= 6 && passwordLength <= 20) {
+              const newPassword = generatePassword(passwordLength);
+              passwordDisplay.textContent = 'Mot de passe généré : ' + newPassword;
+            } else {
+              passwordDisplay.textContent = 'Veuillez entrer une longueur entre 6 et 20.';
+            }
+          });
+        });
+  
+        function generatePassword(length) {
+          const characters = 'ABCDEF01234';
+          let password = '';
+   
+          for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            password += characters.charAt(randomIndex);
+          }
+   
+          return password;
+        }
+  </script>
+</body>
+</html>

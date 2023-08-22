@@ -1,0 +1,77 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), transparent), url(image-cyber.jpg) center center no-repeat;
+    background-size: cover;
+    color: rgb(75, 252, 5);
+}
+nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid rgb(75, 252, 5);
+}
+nav h1{
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+    position: relative;
+    animation: bloodFlow 20s linear infinite;
+}
+@keyframes bloodFlow {
+    0%{
+        top: -50px;
+        opacity: 1;
+    }
+    100% {
+        top: 150vh;
+        opacity: 0;
+    }
+}
+nav .onglets{
+    margin-top: 3px;
+    margin-left: 300px;;
+}
+nav .onglets a{
+    text-decoration: none;
+    color: rgb(75, 252, 5);
+    margin-right: 30px;
+    border-bottom: 0.2px solid rgb(75, 252, 5);
+    padding: 5px;
+}
+header{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+section{
+    padding: 20px;
+}
+button{
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: rgb(37, 37, 128);
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+footer{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+@media screen and (max-width: 768px) {
+    nav .onglets a{
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+}
+.color {
+    color: rgb(75, 252, 5);
+}
